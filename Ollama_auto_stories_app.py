@@ -2,30 +2,13 @@ import streamlit as st
 from langchain_ollama.llms import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+import ollama
 
 # Nome do modelo
 model_name = "llama3.1"
 
-from tqdm import tqdm
-from ollama import pull
-
-
-current_digest, bars = '', {}
-for progress in pull(model_name, stream=True):
-    digest = progress.get('digest', '')
-    if digest != current_digest and current_digest in bars:
-        bars[current_digest].close()
-    elif not digest:
-        print(progress.get('status'))
-    continue
-
-    if digest not in bars and (total := progress.get('total')):
-        bars[digest] = tqdm(total=total, desc=f'pulling {digest[7:19]}', unit='B', unit_scale=True)
-
-    if completed := progress.get('completed'):
-        bars[digest].update(completed - bars[digest].n)
-
-    current_digest = digest
+ollama.pull(model_name)
+ollama.show(model_name)
 
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
