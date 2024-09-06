@@ -7,8 +7,32 @@ import ollama
 # Nome do modelo
 model_name = "llama3.1"
 
-ollama.pull(model_name)
-ollama.show(model_name)
+import subprocess
+import os
+
+# Defina o diretório onde os modelos são armazenados
+model_directory = os.path.expanduser("~/.ollama/models")  # ou outro diretório conforme sua configuração
+
+# Nome do modelo a ser verificado
+model_name = "llama3.1"
+
+def model_exists(model_name, model_directory):
+    # Verifica se o modelo existe no diretório
+    model_path = os.path.join(model_directory, model_name)
+    return os.path.exists(model_path)
+
+def pull_model(model_name):
+    # Executa o comando Ollama para fazer o pull do modelo
+    command = ["ollama", "pull", model_name]
+    subprocess.run(command, check=True)
+
+# Verifica se o modelo já existe
+if not model_exists(model_name, model_directory):
+    print(f"Modelo {model_name} não encontrado. Fazendo o pull...")
+    pull_model(model_name)
+else:
+    print(f"Modelo {model_name} já está disponível.")
+
 
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
