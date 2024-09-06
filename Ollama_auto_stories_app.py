@@ -2,7 +2,6 @@ import streamlit as st
 from langchain_ollama.llms import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-import ollama
 
 # Nome do modelo
 model_name = "llama3.1"
