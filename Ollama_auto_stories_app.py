@@ -6,10 +6,10 @@ from langchain.chains import LLMChain
 import subprocess
 import os
 
-from ollama import OllamaClient
+from ollama import Ollama
 
 def pull_model(model_name):
-    client = OllamaClient()
+    client = Ollama()
     # Tenta fazer o pull do modelo
     try:
         response = client.pull(model_name)
