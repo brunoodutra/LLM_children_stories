@@ -3,25 +3,29 @@ from langchain_ollama.llms import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
-import subprocess
-import os
+# Nome do modelo
+model_name = "llama3.1"
 
-from ollama import Ollama
+from tqdm import tqdm
+from ollama import pull
 
-def pull_model(model_name):
-    client = Ollama()
-    # Tenta fazer o pull do modelo
-    try:
-        response = client.pull(model_name)
-        if response.get('status') == 'success':
-            print(f"Model {model_name} pulled successfully.")
-        else:
-            print(f"Failed to pull model {model_name}: {response.get('message', 'Unknown error')}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
 
-# Use a função para puxar o modelo desejado
-pull_model('llama3')
+current_digest, bars = '', {}
+for progress in pull(model_name, stream=True):
+    digest = progress.get('digest', '')
+    if digest != current_digest and current_digest in bars:
+        bars[current_digest].close()
+    elif not digest:
+        print(progress.get('status'))
+    continue
+
+    if digest not in bars and (total := progress.get('total')):
+        bars[digest] = tqdm(total=total, desc=f'pulling {digest[7:19]}', unit='B', unit_scale=True)
+
+    if completed := progress.get('completed'):
+        bars[digest].update(completed - bars[digest].n)
+
+    current_digest = digest
 
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
