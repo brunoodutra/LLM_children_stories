@@ -4,3 +4,4 @@ streamlit
 langchain_experimental
 streamlit
 ollama
+tqdm
