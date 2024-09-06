@@ -1,6 +1,8 @@
 ### Application Example of create children stories with LLMs
 
-In this example the application is powered by llamma3.1
+In this example, the application is powered by llama3.1.
+
+[Watch the demo video](video/example_video.mp4)
 
 ## Environment setup:
 
@@ -11,7 +13,7 @@ In this example the application is powered by llamma3.1
 		pip install -r requirements.txt
 
 ## LLM setup:
-Use this command to donwload the lamma LLM model 
+Use this command to download the llama LLM model:
 
 		ollama pull llama3.1 
         
