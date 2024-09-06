@@ -6,27 +6,22 @@ from langchain.chains import LLMChain
 import subprocess
 import os
 
-def check_if_model_exists(model_name):
-    # Suponha que o modelo esteja em um diretório específico
-    # Aqui você pode definir o caminho correto conforme sua configuração
-    model_dir = os.path.expanduser("~/.ollama/models/")
-    model_path = os.path.join(model_dir, model_name)
-    return os.path.exists(model_path)
+from ollama import OllamaClient
 
 def pull_model(model_name):
-    # Verifica se o modelo já existe
-    if not check_if_model_exists(model_name):
-        # Executa o comando para fazer o pull do modelo
-        try:
-            result = subprocess.run(['ollama', 'pull', model_name], check=True, text=True, capture_output=True)
-            print(f"Output:\n{result.stdout}")
-        except subprocess.CalledProcessError as e:
-            print(f"Error:\n{e.stderr}")
-    else:
-        print(f"Model {model_name} already exists.")
+    client = OllamaClient()
+    # Tenta fazer o pull do modelo
+    try:
+        response = client.pull(model_name)
+        if response.get('status') == 'success':
+            print(f"Model {model_name} pulled successfully.")
+        else:
+            print(f"Failed to pull model {model_name}: {response.get('message', 'Unknown error')}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Use a função para puxar o modelo desejado
-pull_model('llama3.1')
+pull_model('llama3')
 
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
