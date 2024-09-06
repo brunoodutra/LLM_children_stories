@@ -2,28 +2,7 @@ import streamlit as st
 from langchain_ollama.llms import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-
-import ollama  # Certifique-se de que a biblioteca está corretamente importada
-
-def model_exists(model_name):
-    # Obtém a lista de modelos
-    models = ollama.list().get('models', [])
-    
-    # Verifica se o modelo desejado está na lista
-    for model in models:
-        if model_name in model['name']:
-            return True
-    return False
-
-# Nome do modelo a ser verificado
-model_name = 'llama3.1'
-
-if model_exists(model_name):
-    print(f"Modelo {model_name} está disponível.")
-else:
-    print(f"Modelo {model_name} não encontrado.")
-
-    
+   
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
 
