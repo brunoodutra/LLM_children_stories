@@ -2,7 +2,7 @@
 
 In this example, the application is powered by llama3.1.
 
-[Watch the demo video](video/usage_example.mp4)
+![Video Example](video/usage_example.gif)
 
 ## Environment setup:
 
