@@ -6,7 +6,7 @@ In this example, the application is powered by llama3.1.
 
 ## Environment setup:
 
-		pip create -n .vevn python=3.10.4  
+		python -m venv .venv python=3.10.4
 		pip activate .vevn
 		python -m pip install --upgrade pip
 		Install packages:
