@@ -1,3 +1,9 @@
+
+*
+# Exceto a pasta especifica
+!LLM_CHILDREN_STORIES/
+!pasta_especifica/**
+
 *.i
 *.ii
 *.gpu
