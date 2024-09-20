@@ -5,14 +5,7 @@ from langchain.chains import LLMChain
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 
-with open('key.txt', 'r') as file:
-    for line in file:
-        line = line.strip()
-        api_key = line.split('=')[1]
-load_dotenv()  # Carregar variáveis do arquivo .env
-#api_key = os.getenv('API_KEY')
-#print(api_key)
-os.environ["GROQ_API_KEY"] = api_key
+os.environ["GROQ_API_KEY"] = API_KEY
 
 # Inicialização do modelo LLM
 model_id="llama3-8b-8192"
