@@ -4,10 +4,18 @@ In this example, the application is powered by llama3.1.
 
 ![Video Example](video/usage_example.gif)
 
+
+## Install Ollama 
+ ### Linux
+		curl -fsSL https://ollama.com/install.sh | sh
+        
+ ### Windows
+		https://ollama.com/download/OllamaSetup.exe
+        
 ## Environment setup:
 
-		pip create -n .vevn python=3.10.4  
-		pip activate .vevn
+		python -m venv .venv python=3.10.4
+		pip activate .venv
 		python -m pip install --upgrade pip
 		Install packages:
 		pip install -r requirements.txt

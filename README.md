@@ -4,6 +4,14 @@ In this example, the application is powered by llama3.1.
 
 ![Video Example](video/usage_example.gif)
 
+
+## Install Ollama 
+ ### Linux
+		curl -fsSL https://ollama.com/install.sh | sh
+        
+ ### Windows
+		https://ollama.com/download/OllamaSetup.exe
+        
 ## Environment setup:
 
 		python -m venv .venv python=3.10.4
