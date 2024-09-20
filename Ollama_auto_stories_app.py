@@ -2,7 +2,7 @@ import streamlit as st
 from langchain_ollama.llms import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-   
+
 # Inicialização do modelo LLM
 llm1 = OllamaLLM(model="llama3.1", temperature=0.7, max_new_tokens=512, max_length=512)
 

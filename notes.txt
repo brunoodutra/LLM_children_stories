@@ -1,4 +1,10 @@
-huggingface-cli login
+huggingface-cli login --token=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
+
 git config --global credential.helper store
 
-LLM-chatbot/extra/nlp# pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
+pip install --upgrade pip
+
+pip install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 --force-reinstall --extra-index-url https://download.pytorch.org/whl/nightly/cu117
+
+
+curl -fsSL https://ollama.com/install.sh | sh
