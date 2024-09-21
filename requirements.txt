@@ -6,3 +6,4 @@ ollama
 tqdm
 langchain-groq
 python-dotenv
+gradio_client
